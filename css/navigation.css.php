@@ -54,7 +54,7 @@ if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
 /* specific elements */
 
 #pma_navigation div.pageselector {
-    text-align: center;
+    text-align: left;
     margin: 0;
     margin-<?php echo $left; ?>: 0.75em;
     border-<?php echo $left; ?>: 1px solid #666;
@@ -62,7 +62,6 @@ if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
 
 #pma_navigation div#pmalogo {
     background-color: #455A64;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24), inset 0 1px rgba(255, 255, 255, 0.1);
     height: 48px;
     text-align: center;
     line-height: 48px;
@@ -130,11 +129,18 @@ if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
 }
 
 #pma_navigation_tree_content {
-    width: 100%;
     overflow: auto;
     position: absolute;
     height: 100%;
+    width: 100%;
 }
+
+#pma_navigation_tree_content ul {
+    width: intrinsic;
+    width: -moz-max-content;
+    width: -webkit-max-content;
+}
+
 #pma_navigation_tree_content a.hover_show_full {
     position: relative;
     z-index: 100;
@@ -185,6 +191,7 @@ if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
     white-space: nowrap;
     clear: both;
     min-height: 16px;
+    width: 100%;
 }
 #pma_navigation_tree img {
     margin: 0;
@@ -290,7 +297,7 @@ li.fast_filter input {
     padding-bottom: 2px;
     padding-<?php echo $left; ?>: 4px;
     padding-<?php echo $right; ?>: 1.7em;
-    width: 100%;
+    width: 140px;
 }
 li.fast_filter span {
     position: relative;

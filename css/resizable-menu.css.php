@@ -39,7 +39,8 @@ ul.resizable-menu ul {
     display: none;
     border: 1px #ddd solid;
     z-index: 2;
-    <?php echo $right; ?>: 0;
+    right: 0px;
+    top: 36px;
 }
 
 ul.resizable-menu li:hover {

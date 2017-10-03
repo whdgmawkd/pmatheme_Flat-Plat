@@ -128,7 +128,7 @@ textarea {
     font-size: 1em;
 }
 
-body {
+body:not(#loginform) {
 <?php if (! empty($GLOBALS['cfg']['FontFamily'])) : ?>
     font-family: <?php echo $GLOBALS['cfg']['FontFamily']; ?>;
 <?php endif; ?>
@@ -145,6 +145,7 @@ body#loginform {
 }
 
 #page_content {
+    background-color: #FAFAFA;
     padding: 20px;
 }
 
@@ -1252,7 +1253,6 @@ notebook > header.top */
 
 #serverinfo {
     background-color: #455A64;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24), inset 0 1px rgba(255, 255, 255, 0.1);
     height: 48px;
     color: rgb(255,255,255);
     width: 100%;
@@ -1806,13 +1806,21 @@ div#queryboxcontainer div#bookmarkoptions {
     width: 49%;
 }
 
+#maincontainer {
+    display: inline-block;
+}
+
 #maincontainer ul {
-    list-style-type: disc;
     vertical-align: middle;
 }
 
 #maincontainer li {
-    margin-bottom: .3em;
+    margin-bottom: 8px;
+    list-style-position: inside;
+}
+
+#maincontainer li.no_bullets {
+    list-style-type:none;
 }
 
 #full_name_layer {
@@ -1832,11 +1840,6 @@ div#queryboxcontainer div#bookmarkoptions {
 
 
 /* iconic view for ul items */
-
-li.no_bullets {
-    list-style-type:none !important;
-    margin-left: -25px !important;      //align with other list items which have bullets
-}
 
 /* end iconic view for ul items */
 
@@ -2012,6 +2015,7 @@ div.sqlvalidate {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     margin-bottom: 16px;
     word-break: break-all;
+    padding: 16px;
 }
 
 /* .mdl-card .mdl-card__title .mdl-card__title-text */
@@ -2022,12 +2026,20 @@ div.sqlvalidate {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 24px;
     font-weight: 300;
+    margin-top: -16px;
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+.group ul:nth-child(2) {
+    padding-top: 16px;
+}
+
+.group ul:not(:nth-child(2)) {
+    padding-top: 8px;
 }
 
 /* list padding right */
-.group ul {
-    padding-right: 16px;
-}
 
 .group-cnt {
     padding: 0;
