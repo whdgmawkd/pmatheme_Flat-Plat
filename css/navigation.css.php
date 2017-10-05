@@ -17,15 +17,13 @@ if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
 /* Navigation */
 
 #pma_navigation {
-/*    width: <?php echo $GLOBALS['cfg']['NaviWidth']; ?>px; */
-    width: 240px !important;
-    min-width: 240px !important;
+    width: <?php echo $GLOBALS['cfg']['NaviWidth']; ?>px;
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
-    background: #FAFAFA;
-    color: rgba(0,0,0,0.87);
+    background: <?php echo $GLOBALS['cfg']['NaviBackground']; ?>;
+    color: <?php echo $GLOBALS['cfg']['NaviColor']; ?>;
     z-index: 800;
 }
 
@@ -35,20 +33,15 @@ if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
     border-right: rgba(0, 0, 0, 0.12) 1px solid;
 }
 
-#pma_navigation ul {
-    margin: 0;
-}
-
 #pma_navigation form {
-    margin: 0;
-    padding: 0;
     display: inline;
 }
 
+/*****
 #pma_navigation select#select_server,
 #pma_navigation select#lightm_db {
     width: 100%;
-}
+} ******/
 
 /******************************************************************************/
 /* specific elements */
@@ -56,8 +49,8 @@ if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
 #pma_navigation div.pageselector {
     text-align: left;
     margin: 0;
-    margin-<?php echo $left; ?>: 0.75em;
-    border-<?php echo $left; ?>: 1px solid #666;
+    margin-left: 0.75em;
+    border-left: 1px solid #666;
 }
 
 #pma_navigation div#pmalogo {
@@ -65,7 +58,6 @@ if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
     height: 48px;
     text-align: center;
     line-height: 48px;
-    <?php //better echo $GLOBALS['cfg']['logoBGC']; ?>
 }
 
 #pma_navigation #serverChoice,
@@ -75,21 +67,24 @@ if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
 #pma_navigation #databaseList,
 #pma_navigation div.pageselector.dbselector {
     text-align: center;
-    padding: 5px 10px 0;
+    padding: 10px;
     border: 0;
 }
 
+/* cant find usage */
 #pma_navigation #recentTable,
 #pma_navigation #favoriteTable {
     width: 200px;
 }
 
+/* cant find usage */
 #pma_navigation #favoriteTableList select,
 #pma_navigation #serverChoice select
  {
     width: 80%;
 }
 
+/* cant find usage */
 #pma_navigation_content > img.throbber {
     display: none;
     margin: .3em auto 0;
@@ -98,12 +93,11 @@ if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
 /* Navigation tree*/
 #pma_navigation_tree {
     margin: 0;
-    margin-<?php echo $left; ?>: 5px;
     overflow: hidden;
-    color: #444;
-    height: 74%;
     position: relative;
 }
+
+/* cant find usage */
 #pma_navigation_select_database {
     text-align: left;
     padding: 0 0 0;
@@ -111,10 +105,13 @@ if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
     margin: 0;
 }
 
+/* cant find usage */
 #pma_navigation_db_select {
     margin-top: 0.5em;
     margin-<?php echo $left; ?>: 0.75em;
 }
+
+/* cant find usage */
 #pma_navigation_db_select select {
     background: url("./themes/pmahomme/img/select_bg.png") repeat scroll 0 0;
     -webkit-border-radius: 2px;
@@ -129,16 +126,10 @@ if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
 }
 
 #pma_navigation_tree_content {
-    overflow: auto;
+    overflow-x: hidden;
     position: absolute;
     height: 100%;
     width: 100%;
-}
-
-#pma_navigation_tree_content ul {
-    width: intrinsic;
-    width: -moz-max-content;
-    width: -webkit-max-content;
 }
 
 #pma_navigation_tree_content a.hover_show_full {
@@ -359,7 +350,7 @@ li.fast_filter.db_fast_filter {
     background-size: 1000% 1000%;
     color: rgba(255, 255, 255, 0.7);
     position: fixed;
-    left: calc(240px + 16px) !important;
+    left: calc(<?php echo $GLOBALS['cfg']['NaviWidth']; ?>px + 16px) !important;
     top: 6px !important;
     text-align: center;
     cursor: pointer;
@@ -372,7 +363,7 @@ li.fast_filter.db_fast_filter {
     font-weight: bold;
     position: fixed;
     top: 0;
-    left: 240px !important;
+    left: <?php echo $GLOBALS['cfg']['NaviWidth']; ?>px !important;
     text-align: center;
     cursor: pointer;
     z-index: 800;

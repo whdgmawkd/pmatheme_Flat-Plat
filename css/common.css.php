@@ -93,8 +93,7 @@ abbr[title], dfn[title] {
 
 table {
     background-color: #FFFFFF;
-    border-left: solid 1px rgba(0, 0, 0, 0.26);
-    border-top: solid 1px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.12);
     border-spacing:0;
 }
 
@@ -110,6 +109,8 @@ hr {
 
 input, select {
     vertical-align:middle;
+    outline: none; /*fix outline in chorme */
+    border-style: none;
 }
 
 /********************* End of ResetCSS *********************/
@@ -118,7 +119,7 @@ html {
     font-size: 14.6px;
 }
 
-body:not(#loginform) {
+body {
     font-family: <?php echo $GLOBALS['cfg']['FontFamily']; ?>;
     padding: 0;
     margin: 0;
@@ -150,8 +151,7 @@ h2 {
     margin: 0;
 }
 
-/* cant find uage
-Hiding icons in the page titles */
+/* Hiding icons in the page titles */
 h2 img {
     display: none;
 }
@@ -240,43 +240,60 @@ tbody#tbl_summary_row th {
     border-top-style: solid;
 }
 
+tfoot th {
+    padding: 2px 6px;
+    border-style: solid solid none none;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.12);
+    border-radius: 0;
+    background-clip: border-box;
+}
+
+thead th:last-child,
+tbody#tbl_summary_row th:last-child,
+tfoot th:last-child {
+    border-right-width: 0;
+}
+
 a img {
     border: 0;
 }
 
-hr {
-    color: <?php echo $GLOBALS['cfg']['MainColor']; ?>;
-    background-color: <?php echo $GLOBALS['cfg']['MainColor']; ?>;
-    border: 0;
-    height: 1px;
-}
+/***************************************************************************/
+/* input & select */
 
-form {
-    padding: 0;
-    margin: 0;
-    display: inline;
-}
-
-
-input,
-select {
-    /* Fix outline in Chrome: */
-    outline: none;
-}
-
+/* input text */
 input[type=text],
 input[type=password],
 input[type=number],
 input[type=date] {
+    min-height: 24px;
+    padding: 2px 8px;
     border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-
-
-    background: white;
-    border: 1px solid #aaa;
-    color: #555;
-    padding: 4px;
+    transition: all 270ms cubic-bezier(0, 0, 0.2, 1), box-shadow 180ms cubic-bezier(0, 0, 0.2, 1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    background-color: #FFFFFF;
+    color: rgba(0, 0, 0, 0.87);
+}
+/* disabled */
+input[type=text][disabled],
+input[type=text][disabled]:hover,
+input[type=password][disabled],
+input[type=password][disabled]:hover,
+input[type=number][disabled],
+input[type=number][disabled]:hover,
+input[type=date][disabled],
+input[type=date][disabled]:hover {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    background-color: #FAFAFA;
+    color: rgba(0, 0, 0, 0.38);
+}
+/* focus */
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=number]:focus,
+input[type=date]:focus {
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23);
 }
 
 input[type=text],
@@ -285,127 +302,118 @@ input[type=number],
 input[type=date],
 input[type=checkbox],
 select {
-    margin: 6px;
+    margin: 8px;
 }
 
+/* cant find usage
 input[type=number] {
     width: 50px;
 }
+*/
 
-input[type=text],
-input[type=password],
-input[type=number],
-input[type=date],
-select {
-    transition: all 0.2s;
-    -ms-transition: all 0.2s;
-    -webkit-transition: all 0.2s;
-    -moz-transition: all 0.2s;
-}
-
-input[type=text][disabled],
-input[type=text][disabled]:hover,
-input[type=password][disabled],
-input[type=password][disabled]:hover,
-input[type=number][disabled],
-input[type=number][disabled]:hover,
-input[type=date][disabled],
-input[type=date][disabled]:hover,
-select[disabled],
-select[disabled]:hover {
-    background: #e8e8e8;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-}
-
-input[type=text]:hover,
-input[type=text]:focus,
-input[type=password]:hover,
-input[type=password]:focus,
-input[type=number]:hover,
-input[type=number]:focus,
-input[type=date]:hover,
-input[type=date]:focus,
-select:focus {
-    border: 1px solid #7c7c7c;
-    background: #fff;
-}
-
-input[type=text]:hover,
-input[type=password]:hover,
-input[type=number]:hover,
-input[type=date]:hover {
-    box-shadow: 0 1px 3px #aaa;
-    -webkit-box-shadow: 0 1px 3px #aaa;
-    -moz-box-shadow: 0 1px 3px #aaa;
-}
-
-input[type=submit],
-input[type=button],
-button[type=submit]:not(.mult_submit) {
-    font-weight: bold !important;
-}
-
+/* Button */
 input[type=submit],
 input[type=button],
 button[type=submit]:not(.mult_submit),
 input[type=reset],
 input[name=submit_reset],
 input.button {
-    margin: 6px 14px;
-    border: 1px solid #aaa;
-    padding: 3px 7px;
-    color: #111;
-    text-decoration: none;
-    background: #ddd;
-
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-
-    text-shadow: 0 1px 0 #fff;
-
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('f8f8f8', 'd8d8d8'); ?>
+    min-height: 24px;
+    min-width: 16px;
+    padding: 6px 10px;
+    border-radius: 2px;
+    font-weight: 500;
+    transition: all 270ms cubic-bezier(0, 0, 0.2, 1), box-shadow 180ms cubic-bezier(0, 0, 0.2, 1), background-size 450ms cubic-bezier(0, 0, 0.2, 1), background-image 900ms cubic-bezier(0, 0, 0.2, 1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24), inset 0 0 0 9999px transparent;
+    background-color: #FAFAFA;
+    background-image: radial-gradient(circle farthest-corner at center, transparent 10%, transparent 0%);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1000% 1000%;
+    color: rgba(0, 0, 0, 0.62);
 }
-
+/* hover */
 input[type=submit]:hover,
 input[type=button]:hover,
 button[type=submit]:not(.mult_submit):hover,
 input[type=reset]:hover,
 input[name=submit_reset]:hover,
 input.button:hover {
-    position: relative;
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('fff', 'ddd'); ?>
-    cursor: pointer;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23), inset 0 0 0 9999px transparent;
+    color: rgba(0, 0, 0, 0.87);
 }
-
+/* active */
 input[type=submit]:active,
 input[type=button]:active,
 button[type=submit]:not(.mult_submit):active,
 input[type=reset]:active,
 input[name=submit_reset]:active,
 input.button:active {
-    position: relative;
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('eee', 'ddd'); ?>
-    box-shadow: 0 1px 6px -2px #333 inset;
-    text-shadow: none;
+    transition: all 270ms cubic-bezier(0, 0, 0.2, 1), background-size 0, background-image 0;
+    animation: ripple_effect 270ms cubic-bezier(0, 0, 0.2, 1) forwards;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23), inset 0 0 0 9999px alpha(currentColor, 0.15);
+    background-image: radial-gradient(circle farthest-corner at center, alpha(currentColor, 0.15) 10%, transparent 0%);
+    background-size: 0% 0%;
+    color: rgba(0, 0, 0, 0.87);
 }
-
+/* disabled */
 input[type=submit]:disabled,
 input[type=button]:disabled,
 button[type=submit]:not(.mult_submit):disabled,
 input[type=reset]:disabled,
 input[name=submit_reset]:disabled,
 input.button:disabled {
-    background: #ccc;
-    color: #666;
-    text-shadow: none;
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.12);
+    color: rgba(0, 0, 0, 0.26);
 }
+/* select */
+select {
+    min-height: 24px;
+    min-width: 16px;
+    padding: 6px 26px 6px 10px;
+    border-radius: 2px;
+    font-weight: 500;
+    transition: all 270ms cubic-bezier(0, 0, 0.2, 1), box-shadow 180ms cubic-bezier(0, 0, 0.2, 1), background-size 450ms cubic-bezier(0, 0, 0.2, 1), background-image 900ms cubic-bezier(0, 0, 0.2, 1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24), inset 0 0 0 9999px transparent;
+    color: rgba(0, 0, 0, 0.62);
+    background: url(themes/pma_flatplat/img/pan-down.png) no-repeat calc(100% - 10px) #FAFAFA;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance:none;
+}
+/* hover */
+select:hover {
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23), inset 0 0 0 9999px transparent;
+    color: rgba(0, 0, 0, 0.87);
+}
+/* foxus */
+select:focus {
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23), inset 0 0 0 9999px rgba(0, 0, 0, 0.15);
+    color: rgba(0, 0, 0, 0.87);
+}
+/* disabled */
+select:disabled {
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.12);
+    color: rgba(0, 0, 0, 0.26);
+}
+
+/* cant find usage */
+select[multiple] {
+    background: #FAFAFA;
+}
+
+/*******************************************************************************/
 
 textarea {
     overflow: visible;
     margin: 6px;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 0;
+    box-shadow: none;
+    min-height: 24px;
 }
 
 textarea.char {
@@ -490,23 +498,6 @@ button {
 input[type="checkbox"],
 input[type="radio"] {
     vertical-align: -11%;
-}
-
-
-select {
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-
-    border: 1px solid #bbb;
-    color: #333;
-    padding: 3px;
-    background: white;
-    margin:6px;
-}
-
-select[multiple] {
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'f2f2f2'); ?>
 }
 
 /******************************************************************************/
@@ -1235,8 +1226,8 @@ div#tablestatistics table {
 
 /* Heading */
 #floating_menubar {
-    margin-left: 240px !important;
-    width:calc(100% - 240px) !important;
+    margin-left: <?php echo $GLOBALS['cfg']['NaviWidth']; ?>px !important;
+    width:calc(100% - <?php echo $GLOBALS['cfg']['NaviWidth']; ?>px) !important;
 }
 
 /* notebook > header 
@@ -1825,15 +1816,12 @@ div#queryboxcontainer div#bookmarkoptions {
 #full_name_layer {
     position: absolute;
     padding: 2px;
-    margin-top: -3px;
+    margin-top: -1px;
+    margin-left: 2px;
     z-index: 801;
-
-    border-radius: 3px;
-    border: solid 1px #888;
-    background: #fff;
-
-    display: none;
-
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    background-color: rgba(255, 255, 255, 0.9);
 }
 /* end main page */
 
@@ -3184,7 +3172,7 @@ table.show_create td {
 }
 #pma_console {
     position: relative;
-    margin-<?php echo $left; ?>: 240px;
+    margin-<?php echo $left; ?>: <?php echo $GLOBALS['cfg']['NaviWidth']; ?>px;
 }
 #pma_console .templates {
     display: none;
@@ -3710,3 +3698,5 @@ body .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
     float: <?php echo $right; ?>;
 }
 /* end of styles for jQuery-ui to support rtl languages */
+
+@include "new.common.css"
