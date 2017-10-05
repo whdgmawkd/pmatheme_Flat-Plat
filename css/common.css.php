@@ -73,17 +73,11 @@ a {
     background:transparent;
 }
 
-/* change colours to suit your needs */
 ins {
-    background-color:#ff9;
-    color:#000;
     text-decoration:none;
 }
 
-/* change colours to suit your needs */
 mark {
-    background-color:#ff9;
-    color:#000; 
     font-style:italic;
     font-weight:bold;
 }
@@ -98,7 +92,9 @@ abbr[title], dfn[title] {
 }
 
 table {
-    border-collapse:collapse;
+    background-color: #FFFFFF;
+    border-left: solid 1px rgba(0, 0, 0, 0.26);
+    border-top: solid 1px rgba(0, 0, 0, 0.12);
     border-spacing:0;
 }
 
@@ -107,7 +103,7 @@ hr {
     display:block;
     height:1px;
     border:0;   
-    border-top:1px solid #cccccc;
+    border-top:1px solid rgba(0,0,0,0.12);
     margin:1em 0;
     padding:0;
 }
@@ -116,28 +112,20 @@ input, select {
     vertical-align:middle;
 }
 
-/******************************************/
+/********************* End of ResetCSS *********************/
 /* general tags */
 html {
     font-size: 14.6px;
 }
 
-input,
-select,
-textarea {
-    font-size: 1em;
-}
-
 body:not(#loginform) {
-<?php if (! empty($GLOBALS['cfg']['FontFamily'])) : ?>
     font-family: <?php echo $GLOBALS['cfg']['FontFamily']; ?>;
-<?php endif; ?>
     padding: 0;
     margin: 0;
-    color: rgba(0, 0, 0, 0.87);
-    background: #FFFFFF;
-    margin-left:240px !important;
-    width: calc(100% - 240px);
+    color: <?php echo $GLOBALS['cfg']['MainColor']; ?>;
+    background: <?php echo $GLOBALS['cfg']['MainBackground']; ?>;
+    margin-left:<?php echo $GLOBALS['cfg']['NaviWidth']; ?>px !important;
+    width: calc(100% - <?php echo $GLOBALS['cfg']['NaviWidth']; ?>px);
 }
 
 body#loginform {
@@ -145,20 +133,14 @@ body#loginform {
 }
 
 #page_content {
-    background-color: #FAFAFA;
     padding: 20px;
 }
 
-<?php if (! empty($GLOBALS['cfg']['FontFamilyFixed'])) : ?>
-    textarea,
-    tt,
-    pre,
-    code {
+textarea, tt, pre, code {
     font-family: <?php echo $GLOBALS['cfg']['FontFamilyFixed']; ?>;
-    }
-<?php endif; ?>
+}
 
-
+/* cant find usage start */
 h1 {
     font-size: 140%;
     font-weight: bold;
@@ -168,7 +150,8 @@ h2 {
     margin: 0;
 }
 
-/* Hiding icons in the page titles */
+/* cant find uage
+Hiding icons in the page titles */
 h2 img {
     display: none;
 }
@@ -190,6 +173,8 @@ h3 {
     font-weight: bold;
 }
 
+/* cant find usage end */
+
 a,
 a:link,
 a:visited,
@@ -197,7 +182,7 @@ a:active,
 button.mult_submit,
 .checkall_box+label {
     text-decoration: none;
-    color: #235a81;
+    color: #42A5F5;
     cursor: pointer;
     outline: none;
 
@@ -208,9 +193,10 @@ button.mult_submit:hover,
 button.mult_submit:focus,
 .checkall_box+label:hover {
     text-decoration: underline;
-    color: #235a81;
+    color: #42A5F5;
 }
 
+/* cant find usage start */
 #initials_table {
     background: #f3f3f3;
     border: 1px solid #aaa;
@@ -239,21 +225,19 @@ button.mult_submit:focus,
     box-shadow: 0 0 2px #999;
     <?php echo $_SESSION['PMA_Theme']->getCssGradient('bbbbbb', 'ffffff'); ?>
 }
+/* cant find usage end */
 
-dfn {
-    font-style: normal;
+thead th,
+tbody#tbl_summary_row th {
+    padding: 2px 6px;
+    border-style: none solid solid none;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.12);
+    border-radius: 0;
+    background-clip: border-box;
 }
-
-dfn:hover {
-    font-style: normal;
-    cursor: help;
-}
-
-th {
-    font-weight: bold;
-    color: <?php echo $GLOBALS['cfg']['ThColor']; ?>;
-    background: #f3f3f3;
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'cccccc'); ?>
+tbody#tbl_summary_row th {
+    border-top-style: solid;
 }
 
 a img {
@@ -481,10 +465,10 @@ table td {
     padding: .1em .3em;
     margin: .1em;
     vertical-align: middle;
-    text-shadow: 0 1px 0 #fff;
 }
 
 /* 3.4 */
+/* 위 스타일 사용 아래 내용 주석 
 table {
     border-collapse: collapse;
 }
@@ -496,7 +480,7 @@ thead th {
 th {
     text-align: left;
 }
-
+*/
 
 img,
 button {
@@ -643,13 +627,14 @@ button.mult_submit {
     background-color: transparent;
 }
 
-/* odd items 1,3,5,7,... */
+/* do not apply two color cell 
+/* odd items 1,3,5,7,... 
 table tbody:first-of-type tr:nth-child(odd),
 table tbody:first-of-type tr:nth-child(odd) th {
     background: #fff;
 }
 
-/* even items 2,4,6,8,... */
+/* even items 2,4,6,8,... 
 table tbody:first-of-type tr:nth-child(even),
 table tbody:first-of-type tr:nth-child(even) th {
     background: #DFDFDF;
@@ -659,22 +644,36 @@ table tr th,
 table tr {
     text-align: <?php echo $left; ?>;
 }
+*/
+
+
 
 /* marked table rows */
 td.marked:not(.nomarker),
 table tr.marked:not(.nomarker) td,
-table tbody:first-of-type tr.marked:not(.nomarker) th,
+table tr.marked:not(.nomarker) td a,
+table tbody:first-of-type tr.marked:not(.nomarker) th, 
+table tbody:first-of-type tr.marked:not(.nomarker) th a, 
 table tr.marked:not(.nomarker) {
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ced6df', 'b6c6d7'); ?>
-    color: <?php echo $GLOBALS['cfg']['BrowseMarkerColor']; ?>;
+    color: #FFFFFF;
+    background-color: #42A5F5;   
+}
+
+td.marked:not(.nomarker):hover,
+table tr.marked:not(.nomarker):hover td,
+table tr.marked:not(.nomarker):hover td a,
+table tbody:first-of-type tr.marked:not(.nomarker):hover th, 
+table tbody:first-of-type tr.marked:not(.nomarker):hover th a, 
+table tr.marked:not(.nomarker) {
+    box-shadow: inset 0 0 0 9999px rgba(255,255,255,0.05);
 }
 
 /* hovered items */
 table tbody:first-of-type tr:not(.nopointer):hover,
-table tbody:first-of-type tr:not(.nopointer):hover th,
+/* table tbody:first-of-type tr:not(.nopointer):hover th, */
 .hover:not(.nopointer) {
-    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ced6df', 'b6c6d7'); ?>
-    color: <?php echo $GLOBALS['cfg']['BrowsePointerColor']; ?>;
+    box-shadow: inset 0 0 0 9999px rgba(0,0,0,0.05);
+    color: rgba(0, 0, 0, 0.87);
 }
 
 /* hovered table rows */
